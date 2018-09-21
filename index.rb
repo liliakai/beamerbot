@@ -10,7 +10,8 @@ bot = Cinch::Bot.new do
 
 
   on :channel, /bb yt (.*)/i do |m|
-    result = `youtube-dl --output temp --write-sub #{m.message.split.last}; cvlc temp.*`
+    url = m.message.split.last
+    result = `youtube-dl --output temp --write-sub #{url}; cvlc -f temp.*`
     if error
       m.reply error
     else
